@@ -1,0 +1,20 @@
+[
+    {
+        "task_name": "Save M.J.",
+        "description": "Come on, she is the main character, won't die that easily",
+        "priority": 1000,
+        "id": "c247c692a88847598e060fefb59a9a99"
+    },
+    {
+        "task_name": "Deliver Pizza",
+        "description": "Low-paid job, don't have to pay to much attention on that",
+        "priority": 2000,
+        "id": "a7b617d27f2e497da35ffd166d5403af"
+    },
+    {
+        "task_name": "Save Harry",
+        "description": "No worry, he is something of a scientist himself, too ",
+        "priority": 350,
+        "id": "4e12eeabdcb74b79a1b80cc380eaa8e7"
+    }
+]

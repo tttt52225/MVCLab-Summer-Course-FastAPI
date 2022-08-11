@@ -1,0 +1,23 @@
+[
+    {
+        "name": "Norman Osborn",
+        "super_power": "Something of a scientist himself",
+        "description": "Too old, not a thread",
+        "priority": 20,
+        "id": "7e917999de584611995e79e162b6111e"
+    },
+    {
+        "name": "Vulture",
+        "super_power": "Can fly",
+        "description": "No helmet, go for his head next time",
+        "priority": 21,
+        "id": "6c03f3aa86c2471880145c52cc3f6c53"
+    },
+    {
+        "name": "Sandman",
+        "super_power": "Turn himself into sand",
+        "description": "Too big to handle myself, call Miles for help next time",
+        "priority": 2000,
+        "id": "1c73446da75f402bbd3aaa4519591ab8"
+    }
+]
