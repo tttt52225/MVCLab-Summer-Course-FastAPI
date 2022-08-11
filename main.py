@@ -1,6 +1,7 @@
 import json 
 import os 
 import random
+import shutil
 from typing import Union
 from fastapi import FastAPI, HTTPException, UploadFile, Request
 from fastapi.responses import JSONResponse
@@ -27,7 +28,13 @@ class EnemyException(Exception):
     def __init__(self, name: str):
         self.name = name
 
+class FileException(Exception):
+    def __init__(self, name):
+        self.name = name
+
 app = FastAPI()
+
+my_file_names = []
 
 notes = []
 notes_advices = [ 
@@ -76,6 +83,15 @@ def enemy_exception_handler(request:Request, exc: EnemyException):
         status_code= 404,
         content= {
             'Message' : f'Oops ! Looks like I do not have enemy named {exc.name}, no work today!'
+        }
+    )
+
+@app.exception_handler(EnemyException)
+def enemy_exception_handler(request:Request, exc: EnemyException):
+    return JSONResponse (
+        status_code= 409,
+        content= {
+            'Message' : f'Oops ! File named {exc.name} upload fail, try another one!'
         }
     )
 
@@ -136,5 +152,18 @@ def create_enemy(enemy: Enemy):
     with open(enemies_file, "w") as f:
         json.dump(enemies, f, indent=4)
     return enemy_dict
+
+@app.post('/upload')
+def Upload_file(file: Union[UploadFile, None] = None):
+    if not file: return {"message" : "No file upload"}
+    try:
+        file_location = './' + file.filename
+        with open(file_location, "wb") as f:
+            shutil.copyfileobj(file.file, f)
+            file.close()
+        my_file_names.append(file.filename)
+        return {"Result" : "OK"}
+    except:
+        raise FileException(name=f'Upload File {file.filename}')
 
 
